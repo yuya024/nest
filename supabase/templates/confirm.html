@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>メールアドレスの確認</h2>
+
+    <p>下のリンクをクリックしてメールアドレスを確認してください。</p>
+    <p>
+      <a
+        href="{{ .SiteURL }}/api/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/email-verify-success"
+        >メールアドレスを確認</a
+      >
+    </p>
+  </body>
+</html>
