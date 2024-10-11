@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { EmailPasswordForm } from "@/components/form/email-password-form";
 import { GoogleIcon } from "@/components/svg/google";
 import NestLogo from "@/components/logo/nest-logo";
+import { signInWithGoogle } from "@/lib/actions/auth";
 
 export default function SignupPage() {
   return (
@@ -96,14 +97,12 @@ export default function SignupPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="mt-4">
-              <Button
-                variant="outline"
-                className="w-full"
-                // onClick={handleGoogleLogin}
-              >
-                <GoogleIcon />
-                Googleでログイン
-              </Button>
+              <form action={signInWithGoogle}>
+                <Button variant="outline" className="w-full">
+                  <GoogleIcon />
+                  Googleでログイン
+                </Button>
+              </form>
               <div className="relative my-4">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t" />
