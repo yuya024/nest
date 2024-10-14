@@ -1,8 +1,15 @@
 import { type NextRequest } from "next/server";
 import { updateSession } from "./utils/supabase/middleware";
+import AppMiddleware from "./lib/middleware/app";
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  // AppMiddlewareでチェックするとmiddlewareが過剰に走るのでここでチェックする
+  if (request.nextUrl.pathname.startsWith("/auth/callback")) {
+    const { response } = await updateSession(request);
+    return response;
+  }
+  const { user, response } = await updateSession(request);
+  return AppMiddleware(request, response, user);
 }
 
 export const config = {

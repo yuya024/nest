@@ -14,6 +14,15 @@ const errorMessage: {
   user_already_exists: "ユーザーはすでに存在します",
 };
 
+export const signOut = async () => {
+  const supabase = createClient();
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.log(error.message);
+  }
+};
+
 export const signUpWithEmail = async (email: string, password: string) => {
   const supabase = createClient();
   const { error } = await supabase.auth.signUp({
@@ -51,15 +60,6 @@ export const signInWithEmail = async (email: string, password: string) => {
   }
 
   redirect("/");
-};
-
-export const signOut = async () => {
-  const supabase = createClient();
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    console.log(error.message);
-  }
 };
 
 export const signInWithGoogle = async () => {
