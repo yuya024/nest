@@ -3,11 +3,6 @@ import { updateSession } from "./utils/supabase/middleware";
 import AppMiddleware from "./lib/middleware/app";
 
 export async function middleware(request: NextRequest) {
-  // AppMiddlewareでチェックするとmiddlewareが過剰に走るのでここでチェックする
-  if (request.nextUrl.pathname.startsWith("/auth/callback")) {
-    const { response } = await updateSession(request);
-    return response;
-  }
   const { user, response } = await updateSession(request);
   return AppMiddleware(request, response, user);
 }
@@ -23,7 +18,7 @@ export const config = {
      */
     {
       source:
-        "/((?!api|zoom|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3)$).*)",
+        "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3)$).*)",
       missing: [
         { type: "header", key: "next-router-prefetch" },
         { type: "header", key: "purpose", value: "prefetch" },

@@ -71,7 +71,7 @@ export const signInWithGoogle = async () => {
         access_type: "offline",
         prompt: "consent",
       },
-      redirectTo: `${host}/auth/callback`,
+      redirectTo: `${host}/api/auth/callback`,
     },
   });
 
