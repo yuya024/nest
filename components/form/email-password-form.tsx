@@ -13,17 +13,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
 
 import { mailPasswordFormSchema } from "@/schema/email-password";
 import PasswordForm from "./password-form";
 import { signInWithEmail, signUpWithEmail } from "@/lib/actions/auth";
+import { toast } from "sonner";
 
 type FormData = z.infer<typeof mailPasswordFormSchema>;
 
 export function EmailPasswordForm({ mode }: { mode: "login" | "signup" }) {
-  const { toast } = useToast();
-
   const form = useForm({
     resolver: zodResolver(mailPasswordFormSchema),
     defaultValues: {
@@ -36,19 +34,13 @@ export function EmailPasswordForm({ mode }: { mode: "login" | "signup" }) {
     if (mode === "login") {
       return signInWithEmail(data.email, data.password).then((result) => {
         if (result?.errorMessage) {
-          toast({
-            title: result.errorMessage,
-            variant: "destructive",
-          });
+          toast.warning(result.errorMessage);
         }
       });
     } else {
       return signUpWithEmail(data.email, data.password).then((result) => {
         if (result?.errorMessage) {
-          toast({
-            title: result.errorMessage,
-            variant: "destructive",
-          });
+          toast.warning(result.errorMessage);
         }
       });
     }
