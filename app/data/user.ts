@@ -11,3 +11,14 @@ export const getUser = cache(async () => {
 
   return user;
 });
+
+export const getUserProvider = cache(async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUserIdentities();
+
+  if (error) {
+    console.log(error.message);
+  }
+
+  return data?.identities;
+});

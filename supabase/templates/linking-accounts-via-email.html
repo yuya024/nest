@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>メールアドレスの確認</h2>
+
+    <p>
+      下のリンクをクリックして、リンク先のメールアドレスを確認してください。
+    </p>
+    <p>
+      <a
+        href="{{ .SiteURL }}/api/auth/confirm?token_hash={{ .TokenHash }}&type=email_change&redirect_to={{ .RedirectTo }}"
+        >メールアドレスを確認</a
+      >
+    </p>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 // The client you created from the Server-Side Auth instructions
 import { createClient } from "@/utils/supabase/server";
+import { cookies } from "next/headers";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -16,6 +17,11 @@ export async function GET(request: Request) {
       const isLocalEnv = process.env.NODE_ENV === "development";
       if (isLocalEnv) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
+        // googleアカウントの連携成功時にcookieをセット
+        if (next === "/setting") {
+          const cookie = cookies();
+          cookie.set("google-link-success", "true");
+        }
         return NextResponse.redirect(`${origin}${next}`);
       } else if (forwardedHost) {
         return NextResponse.redirect(`https://${forwardedHost}${next}`);
