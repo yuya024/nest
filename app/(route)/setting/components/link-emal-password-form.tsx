@@ -70,7 +70,6 @@ export function LinkEmailPasswordForm({}) {
           </Tooltip>
         </TooltipProvider>
       </div>
-
       <div className="w-96">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">

@@ -2,7 +2,7 @@ import { cache } from "react";
 import { createClient } from "@/utils/supabase/server";
 
 export const getUser = cache(async () => {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const {
     data: { user },
@@ -13,7 +13,7 @@ export const getUser = cache(async () => {
 });
 
 export const getUserProvider = cache(async () => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.getUserIdentities();
 
   if (error) {

@@ -2,6 +2,6 @@
 
 import { cookies } from "next/headers";
 
-export const deleteCookie = (cookieName: string) => {
-  cookies().delete(cookieName);
+export const deleteCookie = async (cookieName: string) => {
+  await (await cookies()).delete(cookieName);
 };

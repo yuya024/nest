@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   const next = searchParams.get("next") ?? "/";
 
   if (code) {
-    const supabase = createClient();
+    const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
       const forwardedHost = request.headers.get("x-forwarded-host"); // original origin before load balancer
@@ -19,7 +19,7 @@ export async function GET(request: Request) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
         // googleアカウントの連携成功時にcookieをセット
         if (next === "/setting") {
-          const cookie = cookies();
+          const cookie = await cookies();
           cookie.set("google-link-success", "true");
         }
         return NextResponse.redirect(`${origin}${next}`);
