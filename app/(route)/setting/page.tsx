@@ -11,7 +11,7 @@ import UnlinkEmail from "./components/unlink-email";
 export default async function page() {
   await requireUser();
 
-  const isAfterLinked = cookies().get("google-link-success")?.value;
+  const isAfterLinked = (await cookies()).get("google-link-success")?.value;
   const userIdentities = await getUserProvider();
   const emailLinked = await hasIdentity("email");
   const googleLinked = await hasIdentity("google");
