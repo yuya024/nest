@@ -19,7 +19,7 @@ const errorMessage: {
 };
 
 export const signOut = async () => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.auth.signOut();
 
   if (error) {
@@ -28,7 +28,7 @@ export const signOut = async () => {
 };
 
 export const signUpWithEmail = async (email: string, password: string) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.auth.signUp({
     email,
     password,
@@ -44,7 +44,7 @@ export const signUpWithEmail = async (email: string, password: string) => {
 };
 
 export const signInWithEmail = async (email: string, password: string) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -67,7 +67,7 @@ export const signInWithEmail = async (email: string, password: string) => {
 };
 
 export const signInWithGoogle = async () => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
@@ -85,7 +85,7 @@ export const signInWithGoogle = async () => {
 };
 
 export const linkOauth = async (provider: Provider) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.linkIdentity({
     provider,
     options: {
@@ -109,7 +109,7 @@ export const linkOauth = async (provider: Provider) => {
 export const unlinkOauth = async (provider: UserIdentity) => {
   const user = await getUser();
   if (!user) return { success: false };
-  const supabase = createClient();
+  const supabase = await createClient();
 
   if (provider.provider === "email") {
     const email = provider.identity_data?.email;
@@ -140,7 +140,7 @@ export const unlinkOauth = async (provider: UserIdentity) => {
 };
 
 export const linkByEmailPassword = async (email: string, password: string) => {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.updateUser({
     email,
     password,
