@@ -22,3 +22,13 @@ export const mailPasswordFormSchema = z.object({
   }),
   password: passwordSchema,
 });
+
+export const passwordFormSchema = z.object({
+  password: passwordSchema,
+});
+
+export const emailFormSchema = z.object({
+  email: z.string().email({
+    message: "有効なメールアドレスを入力してください。",
+  }),
+});

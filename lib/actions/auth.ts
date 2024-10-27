@@ -164,3 +164,35 @@ export const linkByEmailPassword = async (email: string, password: string) => {
     success: true,
   };
 };
+
+export const sendResetPasswordEmail = async (email: string) => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${host}/update-password`,
+  });
+
+  if (error) {
+    console.log(error.message);
+    throw new Error(error.message);
+  }
+
+  return {
+    success: true,
+  };
+};
+
+export const updatePassword = async (password: string) => {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({
+    password,
+  });
+
+  if (error) {
+    console.log(error.message);
+    throw new Error(error.message);
+  }
+
+  return {
+    success: true,
+  };
+};

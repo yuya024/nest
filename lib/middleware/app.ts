@@ -2,7 +2,12 @@ import { User } from "@supabase/supabase-js";
 import { NextRequest, NextResponse } from "next/server";
 
 const publicRoutes = ["/terms"];
-const guestRoutes = ["/login", "/signup", "/email-verify-success"];
+const guestRoutes = [
+  "/login",
+  "/signup",
+  "/email-verify-success",
+  "/reset-password",
+];
 
 export default async function AppMiddleware(
   request: NextRequest,

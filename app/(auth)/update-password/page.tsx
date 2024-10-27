@@ -1,21 +1,16 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import HyperText from "@/components/ui/hyper-text";
 
-import { EmailPasswordForm } from "@/components/form/email-password-form";
-import AuthLink from "@/components/link/auth-link";
-import { GoogleIcon } from "@/components/svg/google";
 import NestLogo from "@/components/logo/nest-logo";
-import { signInWithGoogle } from "@/lib/actions/auth";
+import UpdatePasswordForm from "./components/update-password-form.";
 
-export default function LoginPage() {
+export default function ResetPasswordPage() {
   return (
     <div>
       <div className="flex min-h-screen bg-gray-100">
@@ -90,34 +85,15 @@ export default function LoginPage() {
           <Card className="w-full md:w-3/5 bg-white shadow-none border-none">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-center">
-                ログイン
+                パスワードリセット
               </CardTitle>
               <CardDescription className="text-center">
-                NEST（Next Era Swim Tracker）へようこそ
+                新しいパスワードを設定してください。
               </CardDescription>
             </CardHeader>
             <CardContent className="mt-4">
-              <form action={signInWithGoogle}>
-                <Button variant="outline" className="w-full">
-                  <GoogleIcon />
-                  Googleでログイン
-                </Button>
-              </form>
-              <div className="relative my-4">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-white px-2 text-muted-foreground">
-                    または
-                  </span>
-                </div>
-              </div>
-              <EmailPasswordForm mode="login" />
+              <UpdatePasswordForm />
             </CardContent>
-            <CardFooter className="flex flex-col items-center space-y-2">
-              <AuthLink type="login" />
-            </CardFooter>
           </Card>
         </div>
       </div>

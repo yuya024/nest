@@ -1,4 +1,3 @@
-import Link from "next/link";
 import HyperText from "@/components/ui/hyper-text";
 import {
   Card,
@@ -14,6 +13,7 @@ import { EmailPasswordForm } from "@/components/form/email-password-form";
 import { GoogleIcon } from "@/components/svg/google";
 import NestLogo from "@/components/logo/nest-logo";
 import { signInWithGoogle } from "@/lib/actions/auth";
+import AuthLink from "@/components/link/auth-link";
 
 export default function SignupPage() {
   return (
@@ -116,7 +116,7 @@ export default function SignupPage() {
               <EmailPasswordForm mode="signup" />
             </CardContent>
             <CardFooter className="flex flex-col items-center space-y-2">
-              <Link href="/login">ログインページへ</Link>
+              <AuthLink type="signup" />
             </CardFooter>
           </Card>
         </div>
