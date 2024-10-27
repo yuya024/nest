@@ -19,10 +19,12 @@ export default async function page() {
   return (
     <div>
       <h2>アカウント連携</h2>
-      <LinkOauthButton
-        isAfterLinked={Boolean(isAfterLinked)}
-        userIdentities={userIdentities as UserIdentity[]}
-      />
+      {emailLinked && (
+        <LinkOauthButton
+          isAfterLinked={Boolean(isAfterLinked)}
+          userIdentities={userIdentities as UserIdentity[]}
+        />
+      )}
 
       {googleLinked && !emailLinked && <LinkEmailPasswordForm />}
 

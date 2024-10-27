@@ -36,21 +36,17 @@ export default function LinkOauthButton({
   }, [isAfterLinked]);
 
   return (
-    <div>
-      {googleLinked && userIdentities.length > 1 && (
-        <>
-          <p>googleアカウントで連携</p>
-          {googleLinked ? (
-            <Button onClick={() => unlinkOauthButton(googleLinked)}>
-              googleアカウントの連携を解除
-            </Button>
-          ) : (
-            <Button onClick={() => linkOauthButton("google")}>
-              googleアカウントで連携
-            </Button>
-          )}
-        </>
+    <>
+      <p>googleアカウントで連携</p>
+      {googleLinked ? (
+        <Button onClick={() => unlinkOauthButton(googleLinked)}>
+          googleアカウントの連携を解除
+        </Button>
+      ) : (
+        <Button onClick={() => linkOauthButton("google")}>
+          googleアカウントで連携
+        </Button>
       )}
-    </div>
+    </>
   );
 }
