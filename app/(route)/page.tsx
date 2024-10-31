@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getUser } from "./data/user";
+import { getUser } from "../data/user";
 import { signOut } from "@/lib/actions/auth";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
