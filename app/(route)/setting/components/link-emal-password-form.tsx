@@ -49,7 +49,7 @@ export function LinkEmailPasswordForm({}) {
   return (
     <>
       <div className="flex items-center gap-2">
-        <p>メールアドレスで連携</p>
+        <h3>メールアドレスで連携</h3>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -80,7 +80,12 @@ export function LinkEmailPasswordForm({}) {
                 <FormItem>
                   <FormLabel>メールアドレス</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="" {...field} />
+                    <Input
+                      type="email"
+                      autoComplete="email"
+                      placeholder=""
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -90,7 +95,7 @@ export function LinkEmailPasswordForm({}) {
             <PasswordForm
               form={form}
               name="password"
-              autoComplete={"new-password"}
+              autoComplete="new-password"
             />
 
             <Button className="w-full">連携する</Button>

@@ -3,6 +3,7 @@ import React from "react";
 export default function NestLogo() {
   return (
     <div className="w-48 h-48 bg-blue-500 flex items-center justify-center p-4 rounded-lg overflow-hidden">
+      <span className="sr-only">NEST</span>
       <svg
         width="100%"
         height="100%"

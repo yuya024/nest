@@ -21,12 +21,15 @@ export default function UpdatePasswordForm() {
     },
   });
 
+  const { isValid, isSubmitting } = form.formState;
+
   const onSubmit = async (data: z.infer<typeof passwordFormSchema>) => {
     try {
       await updatePassword(data.password);
       toast.success("パスワードの変更が完了しました。");
       router.push("/login");
     } catch (error) {
+      console.log(error);
       toast.error("パスワードの変更に失敗しました。");
     }
   };
@@ -36,10 +39,7 @@ export default function UpdatePasswordForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <PasswordForm form={form} name="password" autoComplete="new-password" />
 
-        <Button
-          className="w-full"
-          disabled={!form.formState.isValid || form.formState.isSubmitting}
-        >
+        <Button className="w-full" disabled={!isValid || isSubmitting}>
           変更
         </Button>
       </form>

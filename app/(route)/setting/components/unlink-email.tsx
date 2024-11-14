@@ -6,16 +6,12 @@ import { UserIdentity } from "@supabase/supabase-js";
 import { toast } from "sonner";
 
 export default function UnlinkEmail({
-  userIdentities,
+  emailIdentity,
 }: {
-  userIdentities: UserIdentity[];
+  emailIdentity: UserIdentity;
 }) {
-  const emailIdentity = userIdentities?.find(
-    (identity) => identity.provider === "email"
-  );
-
   const handleUnlinkEmail = async () => {
-    const res = await unlinkOauth(emailIdentity as UserIdentity);
+    const res = await unlinkOauth(emailIdentity);
     toast(`連携解除に${res.success ? "成功" : "失敗"}しました`);
   };
 

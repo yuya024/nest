@@ -18,9 +18,7 @@ export default function LinkOauthButton({
   const googleLinked = userIdentities?.find(
     (identity) => identity.provider === "google"
   );
-  const linkOauthButton = async (oauth: Provider) => {
-    await linkOauth(oauth);
-  };
+  const linkOauthButton = (oauth: Provider) => linkOauth(oauth);
   const unlinkOauthButton = async (oauth: UserIdentity) => {
     const res = await unlinkOauth(oauth);
     toast(`連携解除に${res.success ? "成功" : "失敗"}しました`);
@@ -28,6 +26,9 @@ export default function LinkOauthButton({
 
   useEffect(() => {
     if (isAfterLinked) {
+      /**
+       * 画面ロード直後だとトーストが動かないのでハック
+       */
       setTimeout(() => {
         toast("連携に成功しました");
         deleteCookie("google-link-success");
@@ -37,7 +38,7 @@ export default function LinkOauthButton({
 
   return (
     <>
-      <p>googleアカウントで連携</p>
+      <h3>googleアカウントで連携</h3>
       {googleLinked ? (
         <Button onClick={() => unlinkOauthButton(googleLinked)}>
           googleアカウントの連携を解除
