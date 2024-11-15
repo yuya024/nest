@@ -1,3 +1,4 @@
+import { TeamplteTableProvider } from "@/components/menu-table-editor/table-provider";
 import { TemplateMenuTable } from "@/components/menu-table-editor/template-menu-table";
 
 export default async function MenuTemplatePage() {
@@ -260,9 +261,11 @@ export default async function MenuTemplatePage() {
   ];
 
   return (
-    <TemplateMenuTable
+    <TeamplteTableProvider
       templateCategories={templateCategories}
       templateItems={templateItems}
-    />
+    >
+      <TemplateMenuTable />
+    </TeamplteTableProvider>
   );
 }
